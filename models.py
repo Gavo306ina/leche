@@ -54,13 +54,6 @@ class Productor:
             return True if result.acknowledged == True else False
         else:
             return False
-    
-    def get_hashed_password(self):
-        return bcrypt.hashpw(self.password, bcrypt.gensalt())
-
-    def check_password(self):
-        get_password = self.get()['password']
-        return bcrypt.checkpw(self.password, get_password)
 
     def __str__(self):
         return f"""\tProductor\nName: {self.name} \nemail: {self.email} \npassword: {self.password} \ntelefono: {self.phone}
@@ -90,7 +83,7 @@ class Proveedor:
         }
     
     def __str__(self):
-        return f"\tProveedor\nname: {self.name} \nemail: {self.email} \tTelefono: {self.proveedor_phone}\n\tDirección\nCalle: {self.street}\t Número: {self.number}\nCiudad: {self.city}\tPlus Code: {self.plus_code}\n\n\n"
+        return f"\n\n\tProveedor\nNombre: {self.name} \nEmail: {self.email} \tTelefono: {self.proveedor_phone}\n\tDirección\nCalle: {self.street}\t\t Número: {self.number}\nCiudad: {self.city}\t\tPlus Code: {self.plus_code}\n"
 #user= Productor("test", "anpch@example.com", "123")
 #print(user)
 
@@ -102,9 +95,9 @@ class Leche:
                 "litros_leche": self.litros_leche,
                 "fecha_leche": self.fecha_leche
                 }
-        
+
     def __str__(self):
-        return f"""\n\tDetalles de Leche\nFecha de Leche: {self.fecha_leche}\nLitros recogidos: {self.litros_leche}\n"""
+        return f"""\n\tDetalles de Leche\nFecha de Leche: {self.fecha_leche}\nLitros recogidos: {self.litros_leche}"""
     
 
 class Pagas:
@@ -119,7 +112,7 @@ class Pagas:
                 }
         
     def __str__(self):
-        return f"""\n\tDetalles de Paga\nFecha de Paga: {self.fecha_paga}\nLitros pagados: {self.litros_paga}\nMonto Pagado: {self.monto_paga}\n"""
+        return f"""\n\tDetalles de Pagos\nFecha de Paga: {self.fecha_paga}\nLitros pagados: {self.litros_paga}\nMonto Pagado: {self.monto_paga}"""
     
 
 

@@ -1,0 +1,190 @@
+/* ========================= */
+/* ESTILOS GENERALES */
+/* ========================= */
+
+/* Estilos generales del cuerpo */
+body {
+    font-family: 'Product Sans', sans-serif; /* Fuente principal */
+    background-color: #f5f5f5; /* Fondo claro */
+    color: #333; /* Texto oscuro */
+    margin: 0; /* Elimina márgenes */
+    padding: 0; /* Elimina relleno */
+    display: flex; /* Activa flexbox */
+    flex-direction: column; /* Alinea elementos en columna */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: flex-start; /* Alinea al principio verticalmente */
+    min-height: 100vh; /* Ocupa toda la altura */
+}
+
+/* Evita desplazamientos laterales en móviles */
+html, body {
+    overflow-x: hidden; /* Desactiva scroll horizontal */
+}
+
+/* Contenedor principal de altura completa */
+.full-height {
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex; /* Activa flexbox */
+    flex-direction: column; /* Alinea elementos en columna */
+}
+
+/* ========================= */
+/* BARRA DE NAVEGACIÓN */
+/* ========================= */
+
+/* Estilo principal de la barra de navegación */
+.navbar {
+    display: flex; /* Activa flexbox */
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Espacia elementos horizontalmente */
+    padding: 10px 20px; /* Espaciado interno */
+    background-color: #b28662; /* Fondo marrón claro */
+    color: white; /* Texto blanco */
+    border-radius: 50px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    width: 85%; /* Ancho relativo */
+    max-width: 500px; /* Ancho máximo */
+    position: fixed; /* Fija la barra en la parte superior */
+    margin: 10px auto 0; /* Separacion de la parte superior */
+    top: 0; /* Posición superior */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%); /* Ajuste preciso del centrado */
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+}
+
+/* Espaciado para el contenido principal debajo de la barra */
+.main-content {
+    margin-top: 80px; /* Espacio suficiente para evitar superposición */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Centra el contenido */
+}
+
+/* Estilo del logo */
+.navbar-logo img {
+    height: 50px; /* Alto fijo */
+    width: auto; /* Mantiene proporción */
+    object-fit: contain; /* Ajusta el contenido */
+}
+
+/* Título centrado en la barra */
+.navbar-title {
+    position: absolute; /* Permite centrarlo */
+    left: 50%; /* Alineación central horizontal */
+    transform: translateX(-50%); /* Ajusta para centrar completamente */
+    font-size: 1.5rem; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* Botón desplegable de la barra */
+.menu-button {
+    font-size: 1.5rem; /* Tamaño del icono */
+    cursor: pointer; /* Cambia el cursor al pasar */
+    margin-left: auto; /* Empuja hacia el extremo derecho */
+}
+
+/* ========================= */
+/* MENÚ DESPLEGABLE */
+/* ========================= */
+
+/* Contenedor del menú desplegable */
+.dropdown-menu {
+    display: none; /* Oculto inicialmente */
+    position: absolute; /* Ubicación relativa al botón */
+    top: 60px; /* Aparece debajo del botón */
+    right: 10px; /* Alineado a la derecha */
+    background-color: #ffe6cc; /* Fondo claro */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 200px; /* Ancho del menú */
+    padding: 10px 0; /* Espaciado interno */
+    z-index: 1000; /* Encima de otros elementos */
+    list-style: none; /* Sin viñetas */
+}
+
+/* Elementos individuales del menú */
+.dropdown-menu li {
+    padding: 10px 20px; /* Espaciado interno */
+    border-bottom: 1px solid #f4d8b5; /* Línea separadora */
+}
+
+/* Último elemento sin línea separadora */
+.dropdown-menu li:last-child {
+    border-bottom: none; /* Elimina la línea */
+}
+
+/* Estilo de enlaces en el menú */
+.dropdown-menu a {
+    text-decoration: none; /* Sin subrayado */
+    color: #5a3d2f; /* Color marrón oscuro */
+    font-weight: 500; /* Negrita moderada */
+    transition: color 0.3s ease; /* Suaviza cambios de color */
+}
+
+/* Efecto hover en los enlaces */
+.dropdown-menu a:hover {
+    color: #b28662; /* Cambia el color al pasar el cursor */
+}
+
+/* Muestra el menú desplegable */
+.dropdown-menu.show {
+    display: block; /* Visible cuando está activo */
+}
+
+/* ========================= */
+/* TÍTULOS Y TEXTOS */
+/* ========================= */
+
+/* Títulos principales */
+h1, h3 {
+    font-family: 'Product Sans', sans-serif; /* Fuente principal */
+    color: #333; /* Texto oscuro */
+    text-align: left; /* Alineación izquierda */
+}
+
+/* ========================= */
+/* MODALES */
+/* ========================= */
+
+/* Contenedor del modal */
+.modal {
+    display: none; /* Oculto inicialmente */
+    position: fixed; /* Ocupa toda la pantalla */
+    top: 0; /* Inicia en la parte superior */
+    left: 0; /* Inicia en la parte izquierda */
+    width: 100%; /* Ocupa todo el ancho */
+    height: 100%; /* Ocupa toda la altura */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    z-index: 1000; /* Sobre otros elementos */
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    width: 90%; /* Ancho relativo */
+    max-width: 400px; /* Ancho máximo */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra suave */
+}
+
+/* ========================= */
+/* BOTONES */
+/* ========================= */
+
+/* Botón principal */
+button {
+    width: 100%; /* Ocupa todo el ancho */
+    padding: 10px; /* Espaciado interno */
+    margin: 10px 0; /* Espaciado externo */
+    border-radius: 50px; /* Bordes redondeados */
+    border: 2px solid #b28662; /* Borde marrón claro */
+    box-sizing: border-box; /* Incluye padding en el tamaño */
+}
+
+/* Hover para botones */
+button:hover {
+    background-color: #8c5d45; /* Fondo más oscuro */
+}

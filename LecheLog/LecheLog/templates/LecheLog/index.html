@@ -1,0 +1,23 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <!-- Enlazar archivo CSS -->
+    <link rel="stylesheet" href="{% static 'LecheLog/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <img src="{% static 'LecheLog/LecheLog v2.png' %}" alt="Lechelog Logo" class="logo" style="width: 300px; height: auto;">
+        <h1>Bienvenido a Lechelog</h1>
+        <button class="button" onclick="location.href='inicioSesion'">INICIAR SESIÓN</button>
+        <button class="button" onclick="location.href='registro'">REGISTRARSE</button>
+        <button class="button" onclick="location.href='registrar'">pa probar</button>
+    </div>
+</body>
+</html>
+
+

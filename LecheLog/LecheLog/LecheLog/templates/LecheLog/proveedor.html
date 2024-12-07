@@ -1,0 +1,62 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prueba</title>
+    <!-- Enlazar archivo CSS -->
+    <link rel="stylesheet" href="{% static 'LecheLog/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body class="bg-dark">
+        <h1>Lista de Proveedores</h1>
+<a href="/proveedores/agregar" class="btn btn-success">Agregar Proveedor.</a>
+        <table class="table table-striped table-dark">
+  <thead>
+    <th>Nombre</th>
+    <th>Correo</th>
+    <th>Teléfono</th>
+    <th>Dirección</th>
+    <th>Acción</th>
+  </thead>
+
+  {% for proveedor in proveedores %}
+  
+</div>
+    </td>
+    <td>{{ proveedor.name }}</td>
+    <td>{{ proveedor.email }}</td>
+    <td>{{ proveedor.proveedor_phone }}</td>
+    <td>{{ proveedor.address.street }}, {{ proveedor.address.city }}</td>
+    <td>
+<a href="/proveedores/{{ proveedor.name }}/" class="button btn-success">detalles de paga y leche</a></td>
+    <td><button class="button" >detalles de paga y leche</button></td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+
+
+<!--
+<h1>Lista de Litros</h1>
+<ul>
+    {% for litro in litros %}
+        <li>{{ litro.litros_leche }} litros - Fecha: {{ litro.fecha_leche }}</li>
+    {% endfor %}
+</ul>
+
+<h1>Lista de Pagos</h1>
+<ul>
+    {% for pago in pagos %}
+        <li>{{ pago.litros_paga }} litros - Monto: ${{ pago.monto_paga }} - Fecha: {{ pago.fecha_paga }}</li>
+    {% endfor %}
+</ul>
+  -->
+
+        <script src="" async defer></script>
+    </body>
+</html>

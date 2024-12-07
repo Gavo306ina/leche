@@ -1,0 +1,64 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prueba</title>
+    <!-- Enlazar archivo CSS -->
+    <link rel="stylesheet" href="{% static 'LecheLog/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body class="bg-dark">
+        
+<h1>Detalles del Proveedor</h1>
+
+<h2>Información del Proveedor</h2>
+<p>Nombre: {{ detalles.name }}</p>
+<p>Email: {{ detalles.email }}</p>
+
+<h3>Litros de Leche</h3>
+<table class="table table-striped table-dark">
+  <thead>
+    <th>Litros</th>
+    <th>Fecha</th>
+<a href="/proveedores/{{ detalles.name }}/agregar_litros/" class="btn btn-success">Agregar litros.</a>
+  </thead>
+
+  {% for litro in detalles.litros %}
+</div>
+    </td>
+    <td>{{ litro.litros_leche }}</td>
+    <td>{{ litro.fecha_leche }}</td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+
+
+<h3>Pagos</h3>
+<a href="/proveedores/{{ detalles.name }}/agregar_pago/" class="btn btn-success">Agregar paga.</a>
+<table class="table table-striped table-dark">
+  <thead>
+    <th>Litros Pagados</th>
+    <th>Monto Pagado</th>
+    <th>Fecha</th>
+  </thead>
+
+  {% for pago in detalles.paga %}
+</div>
+    </td>
+    <td>{{ pago.litros_paga }}</td>
+    <td>${{ pago.monto_paga }} </td>
+    <td>{{ pago.fecha_paga }}</td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+    <script src="" async defer></script>
+    </body>
+</html>

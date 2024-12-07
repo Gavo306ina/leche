@@ -1,0 +1,115 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lechelog - Login</title>
+    <!-- Material Design Web Components -->
+    <script type="module" src="https://unpkg.com/@material/web@1.0.0-pre.18/dist/mdc.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'LecheLog/style.css' %}">
+</head>
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-card {
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 2rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.input-field {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.mdc-text-field {
+    width: 100%;
+}
+
+.actions {
+    margin-top: 1.5rem;
+}
+
+.mdc-button {
+    width: 100%;
+    border-radius: 20px;
+    background-color: #6200ea;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 0.75rem;
+    text-transform: none;
+}
+
+.mdc-button:hover {
+    background-color: #3700b3;
+}
+
+.links a {
+    color: #6200ea;
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+
+</style>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <h1>Iniciar Sesión</h1>
+            <form action="#" method="POST">
+                <!-- Email -->
+                <div class="input-field">
+                    <label for="email" class="mdc-text-field">
+                        <input id="email" type="email" class="mdc-text-field__input" required>
+                        <span class="mdc-floating-label">Correo Electrónico</span>
+                        <div class="mdc-line-ripple"></div>
+                    </label>
+                </div>
+                <!-- Contraseña -->
+                <div class="input-field">
+                    <label for="password" class="mdc-text-field">
+                        <input id="password" type="password" class="mdc-text-field__input" required>
+                        <span class="mdc-floating-label">Contraseña</span>
+                        <div class="mdc-line-ripple"></div>
+                    </label>
+                </div>
+                <!-- Botón -->
+                <div class="actions">
+                    <button type="submit" class="mdc-button mdc-button--raised">
+                        <span class="mdc-button__label">Entrar</span>
+                    </button>
+                </div>
+            </form>
+            <div class="links">
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                <p>¿No tienes una cuenta? <a href="#">Regístrate</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Reparto</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        /* Botón similar a la navbar */
+        .submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #b28662; /* Color de la navbar */
+            color: white;
+            border: none;
+            border-radius: 50px; /* Bordes redondeados */
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%; /* Ancho ajustado */
+            max-width: 600px; /* Limitar ancho máximo */
+        }
+
+        .submit-btn:hover {
+            background-color: #9c7355; /* Color más oscuro al pasar el mouse */
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px); /* Resta la altura de la navbar */
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <header>
+    </header><nav class="navbar">
+        <!-- Logo -->
+        <div class="navbar-logo">
+        <img src="{% static "Logo LecheLog.png" %}" alt="Logo LecheLog" class="logo">
+            
+        </div>
+
+        <!-- Título centrado -->
+        <div class="navbar-title">Añadir Nuevo Reparto</div>
+
+        <!-- Botón desplegable -->
+        <div class="menu-button" onclick="toggleDropdownMenu()">
+            ☰
+        </div>
+
+        <!-- Menú desplegable -->
+        <ul id="dropdownMenu" class="dropdown-menu">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="ordenes.html">Mis Ordenes</a></li>            
+            <li><a href="/proveedores">Mis Proveedores</a></li>
+
+        </ul>
+    </nav>
+    </header>
+
+    <!-- Formulario de añadir proveedor -->
+    <main style="padding: 40px;">
+        <div class="container">
+            <h1>Agregar Proveedor</h1>
+            <p>Productor: {{ productor_name }}</p>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <button type="submit" class="submit-btn">Añadir Proveedor</button>
+
+            </form>
+        </div>
+    </main>
+
+<script>
+    // Función para alternar la visibilidad del menú desplegable
+    function toggleDropdownMenu() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('show');
+    }
+
+    // Cerrar el menú desplegable al hacer clic fuera de él
+    document.addEventListener('click', function (event) {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const menuButton = document.querySelector('.menu-button');
+
+        if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+
+    // Obtén el botón y la lista desplegable
+    const addButton = document.getElementById('add-button');
+    const dropdownList = document.getElementById('dropdown-list');
+
+    // Alterna la visibilidad de la lista cuando se hace clic en el botón
+    addButton.addEventListener('click', () => {
+        const isHidden = dropdownList.style.display === 'none' || dropdownList.style.display === '';
+        dropdownList.style.display = isHidden ? 'block' : 'none';
+    });
+
+    // Oculta la lista si haces clic fuera de ella
+    document.addEventListener('click', (event) => {
+        if (!addButton.contains(event.target) && !dropdownList.contains(event.target)) {
+            dropdownList.style.display = 'none';
+        }
+    });
+    
+</script>
+</body>
+</html>

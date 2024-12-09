@@ -1,0 +1,98 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prueba</title>
+    <!-- Enlazar archivo CSS -->
+    <link rel="stylesheet" href="{% static 'LecheLog/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .modal {
+            display: none; /* Ocultar por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .close-button {
+            background-color: #ff5c5c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            background-color: #e04848;
+        }
+
+        /* Estilo para el botón que abre el modal */
+        .open-modal-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .open-modal-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body class="bg-dark">
+        <h1>Lista de Proveedores</h1>
+<a href="/proveedores/agregar" class="btn btn-success">Agregar Proveedor.</a>
+<table class="table table-striped table-dark">
+  <thead>
+    <th>Nombre</th>
+    <th>Correo</th>
+    <th>Teléfono</th>
+    <th>Dirección</th>
+    <th>Acción</th>
+  </thead>
+
+  {% for proveedor in proveedores %}
+  </div>
+    <td>{{ proveedor.name }}</td>
+    <td>{{ proveedor.email }}</td>
+    <td>{{ proveedor.proveedor_phone }}</td>
+    <td>{{ proveedor.address.street }}, {{ proveedor.address.city }}</td>
+    <td>
+<a href="/proveedores/{{ proveedor.name }}/" class="button btn-success">detalles de paga y leche</a></td>
+    </tr>
+{% endfor %}
+
+</table>
+
+
+
+        <script src="" async defer></script>
+    </body>
+</html>

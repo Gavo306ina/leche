@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, initial-scale=1.0">
+    <title>Repartos Históricos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('hhttps://fonts.cdnfonts.com/css/product-sans');
+        body {
+            font-family: 'Product Sans', sans-serif; /* Fuente estandarizada */
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .table-container {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 120px; /* Ajusta el margen superior según la altura del header */
+            text-align: center; /* Centra el contenido dentro del contenedor */
+        
+        }
+        
+        table {
+            width: 100%; /* Asegura que la tabla ocupe el ancho completo del contenedor */
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 1rem;
+            margin: 0 auto; /* Centra la tabla si queda algún espacio */
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #7e5746;
+            font-weight: bold;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .details-button {
+            background-color: #b28662;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .details-button:hover {
+            background-color: #9c704e;
+        }
+        /* Dropdown menu styles */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            list-style: none;
+            margin: 0;
+            padding: 10px 0;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+        .dropdown-menu li {
+            padding: 10px 20px;
+        }
+        .dropdown-menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .dropdown-menu li:hover {
+            background-color: #f0f0f0;
+        }
+        .menu-button {
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        /* Contenedor para los botones de navegación de meses */
+        .month-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Botones de navegación de meses */
+        .month-button {
+            background-color: #b28662;
+            color: white;
+            border: none;
+            padding: 5px 7px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+
+        /* Efecto hover para los botones */
+        .month-button:hover {
+            background-color: #9c704e;
+        }
+
+        /* Estilo para el texto "mes" */
+        #monthText {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+    </style>
+    <script>
+        function toggleDropdownMenu() {
+            const menu = document.getElementById('dropdownMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <header>
+    </header><nav class="navbar">
+        <!-- Logo -->
+        <div class="navbar-logo">
+        <img src="{% static "Logo LecheLog.png" %}" alt="Logo LecheLog" class="logo">
+            
+        </div>
+
+        <!-- Título centrado -->
+        <div class="navbar-title">Inicio</div>
+
+        <!-- Botón desplegable -->
+        <div class="menu-button" onclick="toggleDropdownMenu()">
+            ☰
+        </div>
+
+        <!-- Menú desplegable -->
+        <ul id="dropdownMenu" class="dropdown-menu">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="ordenes.html">Mis Ordenes</a></li>
+            <li><a href="/proveedores">Mis Proveedores</a></li>
+        </ul>
+    </nav>
+    </header>
+    
+    <!-- Tabla de repartos -->
+    <div class="table-container">
+        <p style="font-weight: bold; text-align: center;">Octubre, 2024</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Litros</th>
+                    <th>Fecha</th>
+                    <th>Detalles</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>150</td>
+                    <td>30/10</td>
+                    <td><button class="details-button">Detalles</button></td>
+                </tr>
+                <tr>
+                    <td>60</td>
+                    <td>25/10</td>
+                    <td><button class="details-button">Detalles</button></td>
+                </tr>
+                <tr>
+                    <td>92</td>
+                    <td>20/10</td>
+                    <td><button class="details-button">Detalles</button></td>
+                </tr>
+                <tr>
+                    <td>76</td>
+                    <td>15/10</td>
+                    <td><button class="details-button">Detalles</button></td>
+                </tr>
+                <tr>
+                    <td>106</td>
+                    <td>10/10</td>
+                    <td><button class="details-button">Detalles</button></td>
+                </tr>
+                <tr>
+                    <td>103</td>
+                    <td>05/10</td>
+                    <td><button class="details-button">Detalles</button></td>
+                </tr>
+            
+            </tbody>
+        </table>
+        <!-- Contenedor para los botones de navegación de meses -->
+        <div class="month-navigation">
+            <button class="month-button" id="prevMonth">←</button>
+            <span id="monthText">Mes</span>
+            <button class="month-button" id="nextMonth">→</button>
+        </div>
+
+    </div>
+
+    <!-- Ventana modal de detalles -->
+        <div id="detailsModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">×</span>
+                <h2>Detalles del reparto</h2>
+                <div id="modalDetails">
+                    <!-- La información detallada se insertará aquí dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+
+   <script>
+                // Función para cambiar el mes
+        // Función para abrir el modal con información dinámica
+        function openModal(litros, fecha) {
+            const modal = document.getElementById('detailsModal');
+            const modalDetails = document.getElementById('modalDetails');
+            
+            // Insertar la información detallada en el modal
+            modalDetails.innerHTML = `
+                <p><strong>Litros:</strong> ${litros}</p>
+                <p><strong>Tipo de leche:</strong> ${fecha}</p>
+                <p><strong>Más detalles...</strong></p>
+                <!-- Aquí puedes agregar más detalles si lo deseas -->
+            `;
+    
+    // Mostrar el modal
+    modal.style.display = 'flex';
+}
+
+// Función para cerrar el modal
+function closeModal() {
+    const modal = document.getElementById('detailsModal');
+    modal.style.display = 'none';
+}
+
+// Función para abrir el modal con información dinámica
+function openModal(litros, fecha, tipoLeche, costeTotal, nombreLegal, metodoEntrega) {
+    const modal = document.getElementById('detailsModal');
+    const modalDetails = document.getElementById('modalDetails');
+    
+    // Insertar la información detallada en el modal
+    modalDetails.innerHTML = `
+        <p><strong>Litros:</strong> <span>${litros}</span></p>
+        <p><strong>Tipo de leche:</strong> <span>${tipoLeche}</span></p>
+        <p><strong>Coste Total:</strong> <span>${costeTotal}</span></p>
+        <h3>Datos del Proveedor</h3>
+        <p><strong>Nombre Legal:</strong> <span>${nombreLegal}</span></p>
+        <p><strong>Método de entrega:</strong> <span>${metodoEntrega}</span></p>
+    `;
+    
+    // Mostrar el modal
+    modal.style.display = 'flex';
+}
+
+// Función para cerrar el modal
+function closeModal() {
+    const modal = document.getElementById('detailsModal');
+    modal.style.display = 'none';
+}
+
+// Añadir evento a todos los botones "Detalles"
+const detailButtons = document.querySelectorAll('.details-button');
+detailButtons.forEach((button, index) => {
+    const row = button.closest('tr');
+    const litros = row.querySelector('td:nth-child(1)').textContent;
+    const fecha = row.querySelector('td:nth-child(2)').textContent;
+
+    // Datos adicionales que se mostrarán en el modal
+    const tipoLeche = "Entero"; // Aquí puedes insertar los valores correspondientes a cada fila
+    const costeTotal = "$50";   // Aquí puedes insertar los valores correspondientes a cada fila
+    const nombreLegal = "Proveedor XYZ"; // Aquí puedes insertar los valores correspondientes
+    const metodoEntrega = "En camión"; // Aquí puedes insertar los valores correspondientes
+
+    button.onclick = () => openModal(litros, fecha, tipoLeche, costeTotal, nombreLegal, metodoEntrega);
+});
+
+
+// Función para cambiar entre meses (izquierda y derecha)
+let currentMonthIndex = 9; // Octubre, 2024 (por ejemplo)
+
+function updateMonthDisplay() {
+    const monthElement = document.getElementById('monthDisplay');
+    const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    monthElement.textContent = months[currentMonthIndex];
+}
+
+function prevMonth() {
+    if (currentMonthIndex > 0) {
+        currentMonthIndex--;
+    } else {
+        currentMonthIndex = 11; // Si estamos en enero, vamos a diciembre
+    }
+    updateMonthDisplay();
+}
+
+function nextMonth() {
+    if (currentMonthIndex < 11) {
+        currentMonthIndex++;
+    } else {
+        currentMonthIndex = 0; // Si estamos en diciembre, vamos a enero
+    }
+    updateMonthDisplay();
+}
+
+// Añadir eventos para los botones de cambiar mes
+document.getElementById('prevMonthButton').onclick = prevMonth;
+document.getElementById('nextMonthButton').onclick = nextMonth;
+
+// Inicializar la visualización del mes al cargar la página
+updateMonthDisplay();
+
+    </script>
+
+</body>
+</html>

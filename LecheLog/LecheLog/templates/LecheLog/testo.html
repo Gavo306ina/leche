@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventana Modal</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo general para la ventana modal */
+        .modal {
+            display: none; /* Ocultar por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+        }
+
+        .close-button {
+            background-color: #ff5c5c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            background-color: #e04848;
+        }
+
+        /* Estilo para el botón que abre el modal */
+        .open-modal-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .open-modal-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón para abrir el modal -->
+    <button class="open-modal-button" onclick="abrirModal()">Abrir Modal</button>
+
+    <!-- Estructura del modal -->
+    <div id="miModal" class="modal">
+        <div class="modal-content">
+            <h2>Ventana Modal</h2>
+            <p>Este es un ejemplo de ventana modal sin Bootstrap.</p>
+            <button class="close-button" onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para abrir el modal
+        function abrirModal() {
+            document.getElementById('miModal').style.display = 'flex';
+        }
+
+        // Función para cerrar el modal
+        function cerrarModal() {
+            document.getElementById('miModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

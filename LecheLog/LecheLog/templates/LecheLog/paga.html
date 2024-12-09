@@ -1,0 +1,74 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <header>
+    </header><nav class="navbar">
+        <!-- Logo -->
+        <div class="navbar-logo">
+            <img src="LecheLog.png" alt="Logo LecheLog" class="logo">
+        </div>
+
+        <!-- Título centrado -->
+        <div class="navbar-title">Añadir Registro de Pago</div>
+
+        <!-- Botón desplegable -->
+        <div class="menu-button" onclick="toggleDropdownMenu()">
+            ☰
+        </div>
+
+        <!-- Menú desplegable -->
+        <ul id="dropdownMenu" class="dropdown-menu">
+            <li><a href="/index">Inicio</a></li>
+            <li><a href="ordenes.html">Mis Ordenes</a></li>        
+            <li><a href="/proveedores">Mis Proveedores</a></li>
+
+        </ul>
+    </nav>
+    </header>
+
+
+        <h1>A</h1>
+        <h1>Agregar Pago</h1>
+<p>Proveedor: {{ proveedor_name }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="detalle-boton">Agregar</button>
+</form>
+
+
+        <script>
+    // Función para alternar la visibilidad del menú desplegable
+    function toggleDropdownMenu() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('show');
+    }
+
+    // Cerrar el menú desplegable al hacer clic fuera de él
+    document.addEventListener('click', function (event) {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const menuButton = document.querySelector('.menu-button');
+
+        if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+</script>
+
+    </body>
+</html>

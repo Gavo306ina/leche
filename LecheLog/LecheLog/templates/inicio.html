@@ -1,0 +1,100 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Inicio</title>
+    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <header>
+    </header><nav class="navbar">
+        <!-- Logo -->
+        <div class="navbar-logo">
+        <img src="{% static "Logo LecheLog.png" %}" alt="Logo LecheLog" class="logo">
+            
+        </div>
+
+        <!-- Título centrado -->
+        <div class="navbar-title">Inicio</div>
+
+        <!-- Botón desplegable -->
+        <div class="menu-button" onclick="toggleDropdownMenu()">
+            ☰
+        </div>
+
+        <!-- Menú desplegable -->
+        <ul id="dropdownMenu" class="dropdown-menu">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="ordenes.html">Mis Ordenes</a></li>
+            <li><a href="/proveedores">Mis Proveedores</a></li>
+        </ul>
+    </nav>
+    </header>
+
+   <!-- Contenido principal -->
+   <div class="main-content">
+
+       
+       <h3>BUENOS DÍAS {{entrega.proveedor}}</h3>
+       <p>Registros más recientes</p>
+       {% for mes, entregas in entregas_por_mes.items %}
+        <h2>{{ mes }}</h2>
+    
+                {% for entrega in entregas %}
+    <div class="registro">
+        <span>{{ entrega.litros }} Litros</span>
+        <span>{{ entrega.fecha }}</span>
+        <button class="detalle-boton" onclick="location.href='proveedores/{{entrega.proveedor}}/'">Detalles</button>
+    </div>
+                {% endfor %}
+        {% endfor %}
+
+    </div>
+    <div class="add-button-container">
+        <button class="action-button" id="add-button">+</button>
+        <div class="dropdown-list" id="dropdown-list">
+            <a class="dropdown-item" href="/proveedores/agregar/">Añadir Proveedor</a>
+        </div>
+    </div>
+<script>
+    // Función para alternar la visibilidad del menú desplegable
+    function toggleDropdownMenu() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('show');
+    }
+
+    // Cerrar el menú desplegable al hacer clic fuera de él
+    document.addEventListener('click', function (event) {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const menuButton = document.querySelector('.menu-button');
+
+        if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+
+    // Obtén el botón y la lista desplegable
+    const addButton = document.getElementById('add-button');
+    const dropdownList = document.getElementById('dropdown-list');
+
+    // Alterna la visibilidad de la lista cuando se hace clic en el botón
+    addButton.addEventListener('click', () => {
+        const isHidden = dropdownList.style.display === 'none' || dropdownList.style.display === '';
+        dropdownList.style.display = isHidden ? 'block' : 'none';
+    });
+
+    // Oculta la lista si haces clic fuera de ella
+    document.addEventListener('click', (event) => {
+        if (!addButton.contains(event.target) && !dropdownList.contains(event.target)) {
+            dropdownList.style.display = 'none';
+        }
+    });
+
+</script>
+</body>
+</html>

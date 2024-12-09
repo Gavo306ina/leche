@@ -1,0 +1,162 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Agenda de Contactos</title>
+    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: 'Product Sans', sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center; /* Centra el contenido en el eje horizontal */
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        html, body {
+            overflow-x: hidden;
+        }
+
+        /* Contenedor principal */
+        .main-content {
+            padding: 20px;
+            max-width: 450px;
+            width: 100%;
+            margin: 0 auto; /* Centra el contenedor en la página */
+        }
+
+        /* Estilos de contacto */
+        .contacto {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between; /* Alinea los elementos horizontalmente */
+            align-items: center; /* Alinea los elementos verticalmente */
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilo para los spans que contienen los datos */
+        .contacto span {
+            margin-right: 10px;
+        }
+
+        /* Estilo para el botón de detalles */
+        .contacto button {
+            background-color: #b28662;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contacto button:hover {
+            background-color: #a87d58;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <header></header>
+    <nav class="navbar">
+        <!-- Logo -->
+        <div class="navbar-logo">
+        <img src="{% static "Logo LecheLog.png" %}" alt="Logo LecheLog" class="logo">
+            
+        </div>
+
+        <!-- Título centrado -->
+        <div class="navbar-title">Agenda de Contactos</div>
+
+        <!-- Botón desplegable -->
+        <div class="menu-button" onclick="toggleDropdownMenu()">
+            ☰
+        </div>
+
+        <!-- Menú desplegable -->
+        <ul id="dropdownMenu" class="dropdown-menu">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="#">Mis Ordenes</a></li>
+            <li><a href="/proveedores">Mis Proveedores</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+
+        <h3>Agenda de Contactos</h3>
+        <p>Lista de contactos registrados</p>
+
+        <table class="table table-striped ">
+  <thead>
+    <th>Nombre</th>
+    <th>Correo</th>
+    <th>Teléfono</th>
+    <th>Dirección</th>
+    <th>Acción</th>
+  </thead>
+
+</table>
+  {% for proveedor in proveedores %}
+    <div class="contacto">
+        <span class="contacto-nombre">{{ proveedor.name }}</span>
+        <span class="contacto-mail">{{ proveedor.email }}</span>
+        <span class="contacto-telefono">{{ proveedor.proveedor_phone }}</span>
+        <span class="contacto-direcion">{{ proveedor.address.street }}, {{ proveedor.address.city }}</span>
+        <button class="detalle-boton" onclick="location.href='/proveedores/{{ proveedor.name }}/'" >Detalles</button>
+    </div>
+
+{% endfor %}
+
+    <div class="add-button-container">
+        <button class="action-button" id="add-button">+</button>
+        <div class="dropdown-list" id="dropdown-list">
+            <a class="dropdown-item" href="/proveedores/agregar">Añadir Proveedor</a>
+        </div>
+    </div>
+<script>
+    // Función para alternar la visibilidad del menú desplegable
+    function toggleDropdownMenu() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('show');
+    }
+
+    // Cerrar el menú desplegable al hacer clic fuera de él
+    document.addEventListener('click', function (event) {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const menuButton = document.querySelector('.menu-button');
+
+        if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+
+    // Obtén el botón y la lista desplegable
+    const addButton = document.getElementById('add-button');
+    const dropdownList = document.getElementById('dropdown-list');
+
+    // Alterna la visibilidad de la lista cuando se hace clic en el botón
+    addButton.addEventListener('click', () => {
+        const isHidden = dropdownList.style.display === 'none' || dropdownList.style.display === '';
+        dropdownList.style.display = isHidden ? 'block' : 'none';
+    });
+
+    // Oculta la lista si haces clic fuera de ella
+    document.addEventListener('click', (event) => {
+        if (!addButton.contains(event.target) && !dropdownList.contains(event.target)) {
+            dropdownList.style.display = 'none';
+        }
+    });
+
+</script>
+</body>
+</html>

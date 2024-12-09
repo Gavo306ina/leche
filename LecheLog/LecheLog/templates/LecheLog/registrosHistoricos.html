@@ -1,0 +1,233 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, initial-scale=1.0">
+    <title>Repartos Históricos</title>
+    <link rel="stylesheet" href="{% static 'LecheLog/style.css' %}">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/product-sans');
+        body {
+            font-family: 'Product Sans', sans-serif; /* Fuente estandarizada */
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .table-container {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 120px; /* Ajusta el margen superior según la altura del header */
+            text-align: center; /* Centra el contenido dentro del contenedor */
+        
+        }
+        
+        table {
+            width: 100%; /* Asegura que la tabla ocupe el ancho completo del contenedor */
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 1rem;
+            margin: 0 auto; /* Centra la tabla si queda algún espacio */
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #7e5746;
+            font-weight: bold;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .details-button {
+            background-color: #b28662;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .details-button:hover {
+            background-color: #9c704e;
+        }
+        /* Dropdown menu styles */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            list-style: none;
+            margin: 0;
+            padding: 10px 0;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+        .dropdown-menu li {
+            padding: 10px 20px;
+        }
+        .dropdown-menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .dropdown-menu li:hover {
+            background-color: #f0f0f0;
+        }
+        .menu-button {
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        /* Contenedor para los botones de navegación de meses */
+        .month-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Botones de navegación de meses */
+        .month-button {
+            background-color: #b28662;
+            color: white;
+            border: none;
+            padding: 5px 7px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+
+        /* Efecto hover para los botones */
+        .month-button:hover {
+            background-color: #9c704e;
+        }
+
+        /* Estilo para el texto "mes" */
+        #monthText {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+    </style>
+    <script>
+        function toggleDropdownMenu() {
+            const menu = document.getElementById('dropdownMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <header>
+        <nav class="navbar">
+            <!-- Logo -->
+            <div class="navbar-logo">
+                <img src="LecheLog.png" alt="Logo LecheLog" class="logo">
+            </div>
+
+            <!-- Título centrado -->
+            <div class="navbar-title">REPARTOS HISTÓRICOS</div>
+
+            <!-- Botón desplegable -->
+            <button class="menu-button" onclick="toggleDropdownMenu()">☰</button>
+
+            <!-- Menú desplegable -->
+            <ul id="dropdownMenu" class="dropdown-menu">
+                <li><a href="index">Inicio</a></li>
+                <li><a href="ordenes">Mis Ordenes</a></li>
+                <li><a href="proveedores">Mis Proveedores</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Tabla de repartos -->
+        <div class="table-container">
+        <h1>Repartos Históricos</h1>
+
+        {% for mes, entregas in entregas_por_mes.items %}
+        <h2>{{ mes }}</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Litros</th>
+                    <th>Fecha</th>
+                    <th>Detalles del <br> proveedor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entrega in entregas %}
+                <tr>
+                    <td>{{ entrega.litros }}</td>
+                    <td>{{ entrega.fecha }}</td>
+                    <td>
+<button class="details-button" onclick="location.href='proveedores/{{entrega.proveedor}}/'">{{entrega.proveedor}}</button>
+</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        {% endfor %}
+    </div>
+
+    <!-- Ventana modal de detalles -->
+        <div id="detailsModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">×</span>
+                <h2>Detalles del reparto</h2>
+                <div id="modalDetails">
+                    <!-- La información detallada se insertará aquí dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+<script>
+    // Función para cerrar el modal
+    function closeModal() {
+        const modal = document.getElementById('detailsModal');
+        modal.style.display = 'none';
+    }
+
+    // Función para abrir el modal con la información dinámica
+    function openModal(button) {
+        // Analizar el JSON desde el atributo 'data-entrega' del botón
+        const entrega = JSON.parse(button.dataset.entrega);
+
+        const modal = document.getElementById('detailsModal');
+        const modalDetails = document.getElementById('modalDetails');
+        
+        // Insertar la información detallada en el modal
+        modalDetails.innerHTML = `
+            <p><strong>Litros:</strong> ${entrega.litros}</p>
+            <p><strong>Fecha:</strong> ${entrega.fecha}</p>
+            <hr>
+            <p><strong>Proveedor:</strong> ${entrega.name}</p>
+            <p><strong>Correo:</strong> ${entrega.email}</p>
+            <p><strong>Teléfono:</strong> ${entrega.proveedor_phone}</p>
+        `;
+        
+        // Mostrar el modal
+        modal.style.display = 'flex';
+    }
+</script>
+
+</body>
+</html>

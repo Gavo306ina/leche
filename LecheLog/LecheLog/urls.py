@@ -21,12 +21,15 @@ from maquina import views
 
 urlpatterns = [
     path('', views.index, name='index'),  # Ruta predeterminada
-    path('inicioSesion', views.inicioSesion, name='inicioSesion'),  # Ruta predeterminada
-    path('registro', views.registro, name='registro'),  # Ruta predeterminada
-    path('show/', views.get_prod, name='wachar datos'),  # ver coleccion
-    path('registrar/', views.registrar_productor, name='Registrar Productor'),  # ver coleccion
-    path('proveedores/', views.listar_proveedores, name='listar_proveedores'),
-    path('litros/', views.listar_litros, name='listar_litros'),
-    path('pagos/', views.listar_pagos, name='listar_pagos'),
-    path('proveedores/<str:proveedor_name>/', views.detalles_proveedor, name='detalles_proveedor'),
+    path('logout/', views.singout, name='logout'),  # pa salir
+    path('login/', views.singin, name='login'),  # pa entrar
+    path('registro', views.registrar_productor, name='registro'),  # pensando
+    path('proveedores/', views.listar_proveedores, name='listar_proveedores'),# ver coleccion
+    path('proveedores/agregar/', views.agregar_proveedor, name='agregar_proveedores'),# funcia
+    path('proveedores/<str:proveedor_name>/agregar_litros/', views.agregar_litros, name='agregar_litros'),
+    path('proveedores/<str:proveedor_name>/agregar_pago/', views.agregar_pago, name='agregar_pago'),
+    path('proveedores/<str:proveedor_name>/', views.detalles_proveedor, name='detalles_proveedor'), # funcia
+    path('detalles', views.teste, name='detalles_fechas'), # funcia
+    #path('testo', views.testo, name='modal'),
+    
 ]

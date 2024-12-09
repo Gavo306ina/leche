@@ -1,0 +1,223 @@
+{% load static %} <!-- Cargar etiquetas estáticas -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prueba</title>
+    <!-- Enlazar archivo CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/product-sans');
+        body {
+            font-family: 'Product Sans', sans-serif; /* Fuente estandarizada */
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .table-container {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 120px; /* Ajusta el margen superior según la altura del header */
+            text-align: center; /* Centra el contenido dentro del contenedor */
+        
+        }
+        
+        table {
+            width: 100%; /* Asegura que la tabla ocupe el ancho completo del contenedor */
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 1rem;
+            margin: 0 auto; /* Centra la tabla si queda algún espacio */
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #7e5746;
+            font-weight: bold;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .details-button {
+            background-color: #b28662;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .details-button:hover {
+            background-color: #9c704e;
+        }
+        /* Dropdown menu styles */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            list-style: none;
+            margin: 0;
+            padding: 10px 0;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+        .dropdown-menu li {
+            padding: 10px 20px;
+        }
+        .dropdown-menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .dropdown-menu li:hover {
+            background-color: #f0f0f0;
+        }
+        .menu-button {
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+
+        /* Contenedor para los botones de navegación de meses */
+        .month-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Botones de navegación de meses */
+        .month-button {
+            background-color: #b28662;
+            color: white;
+            border: none;
+            padding: 5px 7px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+
+        /* Efecto hover para los botones */
+        .month-button:hover {
+            background-color: #9c704e;
+        }
+
+        /* Estilo para el texto "mes" */
+        #monthText {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+    </style>
+</head>
+
+<body class="">
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <!-- Logo -->
+        <div class="navbar-logo">
+        <img src="{% static "Logo LecheLog.png" %}" alt="Logo LecheLog" class="logo">
+            
+        </div>
+
+        <!-- Título centrado -->
+        <div class="navbar-title">Agenda de Contactos</div>
+
+        <!-- Botón desplegable -->
+        <div class="menu-button" onclick="toggleDropdownMenu()">
+            ☰
+        </div>
+
+        <!-- Menú desplegable -->
+        <ul id="dropdownMenu" class="dropdown-menu">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="#">Mis Ordenes</a></li>
+            <li><a href="/proveedores">Mis Proveedores</a></li>
+        </ul>
+    </nav>
+
+
+    <h1 class="relleno">Detalles del Proveedor</h1>
+
+<p>Nombre: {{ detalles.name }} / Email: {{ detalles.email }}</p>
+
+<h3>Litros de Leche</h3>
+<table class="table table-striped table-dark">
+  <thead>
+    <th>Litros</th>
+    <th>Fecha</th>
+<button class="detalle-boton" onclick="location.href='/proveedores/{{ detalles.name }}/agregar_litros/'" >Agregar litros</button>
+ <hr>
+  </thead>
+
+  {% for litro in detalles.litros %}
+</div>
+    </td>
+    <td>{{ litro.litros_leche }}</td>
+    <td>{{ litro.fecha_leche }}</td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+
+<h3>Pagos</h3>
+<button class="detalle-boton" onclick="location.href='/proveedores/{{ detalles.name }}/agregar_pago/'" >Agregar paga</button>
+<hr>
+<table class="table table-striped ">
+  <thead>
+    <th>Litros Pagados</th>
+    <th>Monto Pagado</th>
+    <th>Fecha</th>
+  </thead>
+
+  {% for pago in detalles.paga %}
+</div>
+    </td>
+    <td>{{ pago.litros_paga }}</td>
+    <td>${{ pago.monto_paga }} </td>
+    <td>{{ pago.fecha_paga }}</td>
+  </tr>
+
+  {% endfor %}
+
+</table>
+    <script>
+    // Función para alternar la visibilidad del menú desplegable
+    function toggleDropdownMenu() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('show');
+    }
+
+    // Cerrar el menú desplegable al hacer clic fuera de él
+    document.addEventListener('click', function (event) {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const menuButton = document.querySelector('.menu-button');
+
+        if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+</script>
+
+    </body>
+</html>
